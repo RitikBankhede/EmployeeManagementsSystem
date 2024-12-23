@@ -16,7 +16,7 @@ public class Role {
 	@Column(name="role_id")
 	private int role_id;
 
-    @Column(name="name")
+    @Column(name="role_name")
     private String role_name;
    
     @ManyToMany(mappedBy = "roles")
