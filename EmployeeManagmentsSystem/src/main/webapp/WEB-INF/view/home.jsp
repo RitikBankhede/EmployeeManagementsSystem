@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,23 +13,25 @@
             <a class="navbar-brand" href="#">Employee Management</a>
         </div>
     </nav>
-
+    <div>
+      <p style="text-align:center;color:${MSGCOLOR}">${MSG}</p>
+    </div>
     <div class="container mt-4">
         <h1 class="text-center">Welcome to Employee Management System</h1>
         <p class="text-center">Select an operation to manage employees:</p>
         <div class="d-flex justify-content-center mt-4">
             <div class="list-group">
-                <a href="viewEmployees" class="list-group-item list-group-item-action btn btn-primary text-white">View All Employees</a>
-                <a href="viewEmployee" class="list-group-item list-group-item-action btn btn-primary text-white">View All Employees</a>
-                <a href="addEmployee" class="list-group-item list-group-item-action btn btn-success text-white">Add New Employee</a>
-                <a href="updateEmployee" class="list-group-item list-group-item-action btn btn-warning text-white">Update Employee</a>
-                <a href="deleteEmployee" class="list-group-item list-group-item-action btn btn-danger text-white">Delete Employee</a>
+                <a href="viewUsers" class="list-group-item list-group-item-action btn btn-primary text-blue" style="color:black">View All User</a>
+                <a href="addUser" class="list-group-item list-group-item-action btn btn-success text-blue">Add New User</a>
+                <a href="updateUser" class="list-group-item list-group-item-action btn btn-warning text-blue">Update User</a>
+                <a href="deleteUser" class="list-group-item list-group-item-action btn btn-danger text-blue">Delete User</a>
             </div>
         </div>
     </div>
 
     <footer class="text-center mt-5">
-        <p> 2024 Employee Management System | Powered by Spring Boot</p>
+        <p> 2025 Employee Management System | Created By Ritik Bankhede</p>
+        <a href="logout">Click To Logout</a>
     </footer>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.employeemanagmentssystem.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
    
 	@Autowired
@@ -35,27 +37,28 @@ public class SecurityConfig {
 		return authProvider;
 	}
 	
+	@Bean
 	AuthenticationManager getAuthenticationManager(AuthenticationConfiguration authConfig) throws Exception{
 		return authConfig.getAuthenticationManager();
 	}
 	
+	@Bean
 	SecurityFilterChain getSecurityFilterChain(HttpSecurity http) throws Exception{
 		http.authorizeHttpRequests(request->request
 			    .requestMatchers("/").permitAll()
-		        .requestMatchers("/login").permitAll()
-		        .requestMatchers("/viewEmployees").hasAnyAuthority("admin")
-			    .requestMatchers("/viewEmployee").hasAnyAuthority("admin","manager","employee")
-			    .requestMatchers("/addEmployee").hasAnyAuthority("admin","manager")
-			    .requestMatchers("/updateEmployee").hasAnyAuthority("admin","manager")
-				.requestMatchers("/deleteEmployee").hasAnyAuthority("admin")
+			    .requestMatchers("/viewUsers").hasAnyAuthority("admin")
+			    .requestMatchers("/addUser").hasAnyAuthority("admin","manager")
+			    .requestMatchers("/updateUser").hasAnyAuthority("admin","manager")
+				.requestMatchers("/deleteUser").hasAnyAuthority("admin")
 				.anyRequest().authenticated())
 			.formLogin(login->login
-		        .defaultSuccessUrl("/home",true)
-		        .failureUrl("/403"))
-		    .csrf(csrf->csrf
+			    .defaultSuccessUrl("/home",true)
+		        .failureUrl("/403")
+		        .permitAll())
+			 .csrf(csrf->csrf
 		    	.disable())
 		    .exceptionHandling(exc->exc
-		        .accessDeniedPage("/403"));
+		        .accessDeniedPage("/issues"));
          
 	SecurityFilterChain sf=http.build();
 	return sf;
